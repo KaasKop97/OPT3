@@ -11,15 +11,9 @@ import java.util.Scanner;
 
 public class ApiInterface {
     public static final String ApiUrl = "http://127.0.0.1:5000/";
-    public String ApiKey = "";
+    public static String ApiKey = "";
 
-    private static final ApiInterface singleton = new ApiInterface();
-
-    public static ApiInterface getInstance()    {
-        return singleton;
-    }
-
-    private ApiInterface() {
+    public ApiInterface() {
         try {
             File apiKeyFile = new File("src/OPT3/Helpers/ApiKey");
             Scanner reader = new Scanner(apiKeyFile);
@@ -32,34 +26,30 @@ public class ApiInterface {
         }
     }
 
-    public JSONObject post(String path, String[][] headers) throws IOException, ParseException {
-        URL url = new URL(ApiUrl + path);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setDoOutput(true);
-        conn.setRequestMethod("POST");
-        for (String[] header : headers) {
-            System.out.println(header[0] + " " + header[1]);
-            conn.setRequestProperty(header[0], header[1]);
-        }
+    public static void makeRequest() {
 
-        conn.setRequestProperty("api_key", ApiKey);
-        conn.setUseCaches(false);
-        conn.connect();
-
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(conn.getInputStream()));
-        String inputLine;
-        StringBuilder content = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
-        }
-        in.close();
-        conn.disconnect();
-        JSONParser parser = new JSONParser();
-        Object jsonObj = parser.parse(content.toString());
-
-        JSONObject jsonObject = (JSONObject) jsonObj;
-        System.out.println(((JSONObject) jsonObj).get("result"));
-        return new JSONObject();
     }
+
+//    public JSONObject post(String path, String[][] headers) throws IOException, ParseException {
+//        URL url = new URL(ApiUrl + path);
+//        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//        conn.setDoOutput(true);
+//        conn.setRequestMethod("POST");
+//        for (String[] header : headers) {
+//            conn.setRequestProperty(header[0], header[1]);
+//        }
+//        conn.setRequestProperty("api_key", ApiKey);
+//        conn.setUseCaches(false);
+//        conn.connect();
+//        // Code smells, added a new class which handles reading from the input stream as that is a common method to execute.
+//        // And it'd just result into duplicate code and we always need to keep DRY :)
+//        String content = MiscHelper.readContentFromRequest(conn.getInputStream());
+//        conn.disconnect();
+//        JSONParser parser = new JSONParser();
+//        Object jsonObj = parser.parse(content);
+//
+//        JSONObject jsonObject = (JSONObject) jsonObj;
+//        System.out.println(((JSONObject) jsonObj).get("result"));
+//        return new JSONObject();
+//    }
 }
