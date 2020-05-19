@@ -1,6 +1,7 @@
 package OPT3.Controllers;
 
 import OPT3.Helpers.ApiInterface;
+import OPT3.Helpers.PostRequest;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -19,9 +20,10 @@ public class LoginScreenController {
     @FXML
     TextField passwordField;
 
-    private final ApiInterface apiInterface = ApiInterface.getInstance();
+    private final PostRequest postRequest = new PostRequest();
 
     public LoginScreenController() throws IOException {
+
     }
 
     @FXML
@@ -30,7 +32,8 @@ public class LoginScreenController {
         String usernameEncoded = encodeCredentials.encodeToString(usernameField.getText().getBytes());
         String passwordEncoded = encodeCredentials.encodeToString(passwordField.getText().getBytes());
         String[][] headers = {{"Authentication", "Basic " + usernameEncoded + ":" + passwordEncoded}};
-        JSONObject response = apiInterface.post("login", headers);
-        System.out.println(response);
+        JSONObject response = postRequest.makeRequest("login", headers);
+        PostRequest.makeRequest();
+        System.out.println(response.get("result"));
     }
 }
