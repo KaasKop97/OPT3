@@ -2,6 +2,7 @@ package OPT3.Controllers;
 
 import OPT3.Helpers.ApiInterface;
 import OPT3.Helpers.PostRequest;
+import OPT3.ViewNavigator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -35,5 +36,8 @@ public class LoginScreenController {
         JSONObject response = postRequest.makeRequest("login", headers);
         PostRequest.makeRequest();
         System.out.println(response.get("result"));
+        if (Boolean.parseBoolean(response.get("result").toString()))   {
+            ViewNavigator.showView(ViewNavigator.MainMenuScreen);
+        }
     }
 }
