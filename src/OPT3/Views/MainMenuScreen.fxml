@@ -1,19 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="1366" minWidth="768" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <Label text="MOOI NIET?" />
-   </children>
-</GridPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OPT3.Controllers.MainMenuScreen">
+    <tabs>
+        <Tab text="Companies">
+            <content>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <TableView fx:id="CompanyTableView" prefHeight="200.0" prefWidth="200.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="ID">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="id" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75.0" text="Name">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="name" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75.0" text="Contact">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="contact_person" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75.0" text="KVK">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="kvk_number" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                            <children>
+                                <Button fx:id="openCompanyDetailsButton" mnemonicParsing="false" text="Open" />
+                            </children>
+                        </HBox>
+                    </children>
+                </GridPane>
+            </content>
+        </Tab>
+        <Tab text="Consumers">
+            <content>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <TableView fx:id="ConsumerTableView" prefHeight="200.0" prefWidth="200.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="ID">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="ID" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75.0" text="Name">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="name" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="75.0" text="E-Mail">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="email_address" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                            <children>
+                                <Button fx:id="openConsumerDetailsButton" mnemonicParsing="false" text="Open" />
+                            </children>
+                        </HBox>
+                    </children>
+                </GridPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
