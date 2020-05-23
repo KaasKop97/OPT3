@@ -2,14 +2,11 @@ package OPT3.Controllers;
 
 import OPT3.Helpers.GetRequest;
 import OPT3.Models.Company;
-import OPT3.Models.Consumer;
 import OPT3.Models.Customer;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;

@@ -29,27 +29,4 @@ public class ApiInterface {
     public static void makeRequest() {
 
     }
-
-//    public JSONObject post(String path, String[][] headers) throws IOException, ParseException {
-//        URL url = new URL(ApiUrl + path);
-//        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//        conn.setDoOutput(true);
-//        conn.setRequestMethod("POST");
-//        for (String[] header : headers) {
-//            conn.setRequestProperty(header[0], header[1]);
-//        }
-//        conn.setRequestProperty("api_key", ApiKey);
-//        conn.setUseCaches(false);
-//        conn.connect();
-//        // Code smells, added a new class which handles reading from the input stream as that is a common method to execute.
-//        // And it'd just result into duplicate code and we always need to keep DRY :)
-//        String content = MiscHelper.readContentFromRequest(conn.getInputStream());
-//        conn.disconnect();
-//        JSONParser parser = new JSONParser();
-//        Object jsonObj = parser.parse(content);
-//
-//        JSONObject jsonObject = (JSONObject) jsonObj;
-//        System.out.println(((JSONObject) jsonObj).get("result"));
-//        return new JSONObject();
-//    }
 }
