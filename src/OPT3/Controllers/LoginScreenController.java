@@ -21,6 +21,9 @@ public class LoginScreenController {
     @FXML
     TextField passwordField;
 
+    Boolean success;
+    Boolean result;
+
     private final PostRequest postRequest = new PostRequest();
 
     public LoginScreenController() throws IOException {
@@ -35,8 +38,9 @@ public class LoginScreenController {
         String[][] headers = {{"Authentication", "Basic " + usernameEncoded + ":" + passwordEncoded}};
         JSONObject response = postRequest.makeRequest("login", headers);
         PostRequest.makeRequest();
-        System.out.println(response.get("result"));
-        if (Boolean.parseBoolean(response.get("result").toString()))   {
+        success = Boolean.parseBoolean(String.valueOf(response.get("status").toString().equals("success")));
+        result = Boolean.parseBoolean(response.get("result").toString());
+        if (success && result) {
             ViewNavigator.showView(ViewNavigator.MainMenuScreen);
         }
     }
