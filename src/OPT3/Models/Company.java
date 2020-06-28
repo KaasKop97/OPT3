@@ -6,8 +6,9 @@ public class Company extends Customer {
     public String name;
     public String kvk_number;
     public String contact_person;
+    public Address address;
 
-    public Company(String id, String name, String kvk_number, String contact_person) {
+    public Company(String id, String name, String kvk_number, String contact_person, Address address) {
         super();
         this.id = id;
         this.name = name;

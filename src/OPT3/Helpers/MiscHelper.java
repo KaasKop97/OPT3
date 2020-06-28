@@ -1,5 +1,12 @@
 package OPT3.Helpers;
 
+import OPT3.Controllers.CustomerDetailsController;
+import OPT3.Models.Customer;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

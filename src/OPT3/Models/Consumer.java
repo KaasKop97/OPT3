@@ -5,21 +5,10 @@ public class Consumer extends Customer {
     public String teamviewer_id;
     public String teamviewer_password;
 
-    public Consumer(int ID, String name, String email_address, String telephone_number, String type, int ID1, String teamviewer_id, String teamviewer_password) {
-        super(ID, name, email_address, telephone_number, type);
-        this.ID = ID1;
+    public Consumer(int ID, String name, String email_address, String telephone_number, String type, Address address, String teamviewer_id, String teamviewer_password) {
+        super(ID, name, email_address, telephone_number, type, address);
         this.teamviewer_id = teamviewer_id;
         this.teamviewer_password = teamviewer_password;
-    }
-
-    @Override
-    public int getID() {
-        return ID;
-    }
-
-    @Override
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public String getTeamviewer_id() {

@@ -1,6 +1,7 @@
 package OPT3.Controllers;
 
 import OPT3.Helpers.GetRequest;
+import OPT3.Models.Address;
 import OPT3.Models.Company;
 import OPT3.Models.Consumer;
 import OPT3.Models.Customer;
@@ -23,7 +24,7 @@ public class MainMenuScreen {
     public Button openConsumerDetailsButton;
     public TableView<Company> CompanyTableView;
     public TableView<Customer> ConsumerTableView;
-    private CustomerDetailsController  customerDetailsController;
+    private CustomerDetailsController customerDetailsController;
 
     public void initialize() throws IOException, ParseException {
         GetRequest test = new GetRequest();
@@ -33,11 +34,15 @@ public class MainMenuScreen {
         for (int i = 0; i < companyResults.size(); i++) {
             System.out.println(companyResults.get(i));
             ArrayList tempCompanyList = (ArrayList) companyResults.get(i);
-            companyList.add(new Company(tempCompanyList.get(0).toString(), tempCompanyList.get(1).toString(), tempCompanyList.get(2).toString(), tempCompanyList.get(3).toString()));
+            JSONObject getAddressInfo = test.makeRequest("/customer/address/" + tempCompanyList.get(4).toString());
+            ArrayList addressResult = (ArrayList) getAddressInfo.get("result");
+            addressResult = (ArrayList) addressResult.get(0);
+            Address address = new Address(addressResult.get(1).toString(), addressResult.get(2).toString(), addressResult.get(4).toString(), addressResult.get(3).toString(), addressResult.get(5).toString());
+            companyList.add(new Company(tempCompanyList.get(0).toString(), tempCompanyList.get(1).toString(), tempCompanyList.get(2).toString(), tempCompanyList.get(3).toString(), address));
         }
 
-        GetRequest idk = new GetRequest();
-        JSONObject getAllConsumers = idk.makeRequest("/customer/consumer/get_all");
+        GetRequest getRequestGetConsumers = new GetRequest();
+        JSONObject getAllConsumers = getRequestGetConsumers.makeRequest("/customer/consumer/get_all");
         ArrayList consumerResults = (ArrayList) getAllConsumers.get("result");
         System.out.println(consumerResults);
         ObservableList<Customer> customerList = ConsumerTableView.getItems();
@@ -45,12 +50,21 @@ public class MainMenuScreen {
         for (int i = 0; i < consumerResults.size(); i++) {
             System.out.println(consumerResults.get(i));
             ArrayList tempConsumerResults = (ArrayList) consumerResults.get(i);
+            System.out.println(tempConsumerResults);
+            JSONObject getAddressInfo = getRequestGetConsumers.makeRequest("/customer/address/" + tempConsumerResults.get(4).toString());
+            ArrayList addressResult = (ArrayList) getAddressInfo.get("result");
+            addressResult = (ArrayList) addressResult.get(0);
+            System.out.println(addressResult);
+            Address address = new Address(addressResult.get(1).toString(), addressResult.get(2).toString(), addressResult.get(4).toString(), addressResult.get(3).toString(), addressResult.get(5).toString());
+
             customerList.add(new Customer(
-                    Integer.parseInt(tempConsumerResults.get(0).toString()),
-                    tempConsumerResults.get(1).toString(),
-                    tempConsumerResults.get(2).toString(),
-                    tempConsumerResults.get(3).toString(),
-                    tempConsumerResults.get(4).toString())
+                            Integer.parseInt(tempConsumerResults.get(0).toString()),
+                            tempConsumerResults.get(1).toString(),
+                            tempConsumerResults.get(2).toString(),
+                            tempConsumerResults.get(3).toString(),
+                            tempConsumerResults.get(4).toString(),
+                            address
+                    )
             );
         }
     }
@@ -66,13 +80,10 @@ public class MainMenuScreen {
         Parent root = fxmlLoader.load();
         CustomerDetailsController controller = fxmlLoader.getController();
         controller.initData(customer);
-
         Scene scene = new Scene(root, 600, 400);
         Stage stage = new Stage();
         stage.setTitle("Customer details");
         stage.setScene(scene);
         stage.show();
     }
-
-
 }

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 
 public class GetRequest extends ApiInterface implements GetRequestInterface {
+
     @Override
     public JSONObject makeRequest(String path) throws IOException, ParseException {
         // Code Smells
