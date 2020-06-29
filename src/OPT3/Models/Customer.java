@@ -6,17 +6,18 @@ public class Customer {
     public String email_address;
     public String telephone_number;
     public String type;
+    public Address address;
 
-    public Customer(int ID, String name, String email_address, String telephone_number, String type) {
+    public Customer(int ID, String name, String email_address, String telephone_number, String type, Address address) {
         this.ID = ID;
         this.name = name;
         this.email_address = email_address;
         this.telephone_number = telephone_number;
         this.type = type;
+        this.address = address;
     }
 
-    public Customer()   {
-
+    public Customer() {
     }
 
     public int getID() {
@@ -57,5 +58,13 @@ public class Customer {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

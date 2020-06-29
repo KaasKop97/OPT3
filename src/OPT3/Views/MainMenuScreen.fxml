@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OPT3.Controllers.MainMenuScreen">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OPT3.Controllers.MainMenuScreenController">
     <tabs>
         <Tab text="Companies">
             <content>
@@ -41,10 +42,14 @@
                                 </TableColumn>
                             </columns>
                         </TableView>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="1">
                             <children>
-                                <Button fx:id="openCompanyDetailsButton" mnemonicParsing="false" text="Open" />
+                                <Button fx:id="openCompanyDetailsButton" mnemonicParsing="false" onMousePressed="#openCustomerDetailsButtonPressed" text="Open" />
+                                <Button mnemonicParsing="false" text="Nieuw bedrijf" />
                             </children>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
                         </HBox>
                     </children>
                 </GridPane>
@@ -80,10 +85,14 @@
                                 </TableColumn>
                             </columns>
                         </TableView>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="1">
                             <children>
-                                <Button fx:id="openConsumerDetailsButton" mnemonicParsing="false" text="Open" />
+                                <Button fx:id="openConsumerDetailsButton" mnemonicParsing="false" onMousePressed="#openConsumerDetailsButtonPressed" text="Open" />
+                                <Button mnemonicParsing="false" text="Nieuwe klant" />
                             </children>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
                         </HBox>
                     </children>
                 </GridPane>

@@ -6,19 +6,27 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
 public class ViewNavigator {
-    public static final String MainScreen = "Views/MainScreen.fxml";
-    public static final String MainMenuScreen = "Views/MainMenuScreen.fxml";
-    public static final String LoginScreen = "Views/LoginScreen.fxml";
+    public final String MainScreen = "Views/MainScreen.fxml";
+    public final String MainMenuScreen = "Views/MainMenuScreen.fxml";
+    public final String LoginScreen = "Views/LoginScreen.fxml";
 
     private static MainController mainController;
+    public String currentView = "";
 
-    public static String currentView = "";
+    private static ViewNavigator singleton = new ViewNavigator();
 
-    public static void setMainController(MainController mainController) {
+    private ViewNavigator() {
+    }
+
+    public static ViewNavigator getInstance() {
+        return singleton;
+    }
+
+    public void setMainController(MainController mainController) {
         ViewNavigator.mainController = mainController;
     }
 
-    public static void showView(String fxml_name) {
+    public void showView(String fxml_name) {
         System.out.println("Showing: " + fxml_name);
         try {
             mainController.setView(
@@ -26,7 +34,7 @@ public class ViewNavigator {
                             ViewNavigator.class.getResource(fxml_name)
                     )
             );
-            ViewNavigator.currentView = fxml_name;
+            this.currentView = fxml_name;
         } catch (IOException e) {
             System.out.println("IOException occurred.");
             e.printStackTrace();

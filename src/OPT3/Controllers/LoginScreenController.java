@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
+import javax.swing.text.View;
 import java.io.IOException;
 import java.util.Base64;
 
@@ -20,6 +21,9 @@ public class LoginScreenController {
 
     @FXML
     TextField passwordField;
+
+    Boolean success;
+    Boolean result;
 
     private final PostRequest postRequest = new PostRequest();
 
@@ -35,9 +39,11 @@ public class LoginScreenController {
         String[][] headers = {{"Authentication", "Basic " + usernameEncoded + ":" + passwordEncoded}};
         JSONObject response = postRequest.makeRequest("login", headers);
         PostRequest.makeRequest();
-        System.out.println(response.get("result"));
-        if (Boolean.parseBoolean(response.get("result").toString()))   {
-            ViewNavigator.showView(ViewNavigator.MainMenuScreen);
+        success = Boolean.parseBoolean(String.valueOf(response.get("status").toString().equals("success")));
+        result = Boolean.parseBoolean(response.get("result").toString());
+        if (success && result) {
+            ViewNavigator vwn = ViewNavigator.getInstance();
+            vwn.showView(vwn.MainMenuScreen);
         }
     }
 }
