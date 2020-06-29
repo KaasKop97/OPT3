@@ -1,17 +1,27 @@
 package OPT3.Models;
 
 public class Address {
+    public Integer id;
     public String street_name;
     public String street_number;
     public String city;
     public String postal_code;
     public String province;
 
-    public Address(String street_name, String street_number, String city, String postal_code, String province) {
+    public Address(Integer id, String street_name, String street_number, String city, String postal_code, String province) {
+        this.id = id;
         this.street_name = street_name;
         this.street_number = street_number;
         this.city = city;
         this.postal_code = postal_code;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getStreet_name() {
@@ -43,9 +53,6 @@ public class Address {
     }
 
     public void setPostal_code(String postal_code) {
-        if(postal_code.length() != 6)   {
-            System.out.println("Nothing changed since the postal code does not meet specification.");
-        }
         this.postal_code = postal_code;
     }
 

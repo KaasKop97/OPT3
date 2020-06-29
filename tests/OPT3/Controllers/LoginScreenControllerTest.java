@@ -24,9 +24,9 @@ class LoginScreenControllerTest {
     public void initializeTest() {
         // All possible combinations, so entirely wrong pass / user, partly correct user / pass, and working ones.
         credentialsHolder.put("test", "test");
-        credentialsHolder.put("kaas", "topkek");
-        credentialsHolder.put("kaas", "asdasd");
-        credentialsHolder.put("testing", "topkek");
+        credentialsHolder.put("user", "user");
+        credentialsHolder.put("user", "asdasd");
+        credentialsHolder.put("testing", "testing");
     }
 
     @Test

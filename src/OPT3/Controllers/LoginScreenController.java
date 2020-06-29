@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
+import javax.swing.text.View;
 import java.io.IOException;
 import java.util.Base64;
 
@@ -41,7 +42,8 @@ public class LoginScreenController {
         success = Boolean.parseBoolean(String.valueOf(response.get("status").toString().equals("success")));
         result = Boolean.parseBoolean(response.get("result").toString());
         if (success && result) {
-            ViewNavigator.showView(ViewNavigator.MainMenuScreen);
+            ViewNavigator vwn = ViewNavigator.getInstance();
+            vwn.showView(vwn.MainMenuScreen);
         }
     }
 }

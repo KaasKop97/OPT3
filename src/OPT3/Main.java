@@ -20,8 +20,9 @@ public class Main extends Application {
     private Pane loadMainPane() {
         FXMLLoader loader = new FXMLLoader();
         Pane mainPane = null;
+        ViewNavigator vwn = ViewNavigator.getInstance();
         try {
-            mainPane = (Pane) loader.load(getClass().getResourceAsStream(ViewNavigator.MainScreen));
+            mainPane = (Pane) loader.load(getClass().getResourceAsStream(vwn.MainScreen));
         } catch (IOException e) {
             System.out.println("IOException, cannot load mainScreen");
             e.printStackTrace();
@@ -29,14 +30,13 @@ public class Main extends Application {
 
         MainController mainController = loader.getController();
 
-        ViewNavigator.setMainController(mainController);
-        ViewNavigator.showView(ViewNavigator.LoginScreen);
+        vwn.setMainController(mainController);
+        vwn.showView(vwn.LoginScreen);
         return mainPane;
     }
 
     private Scene createScene(Pane mainPane)    {
-        Scene scene = new Scene(mainPane, 800, 600);
-        return scene;
+        return new Scene(mainPane, 800, 600);
     }
 
     public static void main(String[] args) {
